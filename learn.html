@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    
+
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/learn.css">
+    <link rel="icon" type="image/x-icon" href="./imgs/count.png">
+    <script src="https://kit.fontawesome.com/c0f66a6381.js" crossorigin="anonymous"></script>
+
+    <title>Learn</title>
+</head>
+<body>
+    
+    <nav>
+        <ul>
+            <div class="navbar">
+            <h1>3-2-1 Counters</h1>
+            <div class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="learn.html">Learn</a></li>
+            <li><a href="test.html">Test</a></li>
+            <li><a href="about.html">About</a></li>
+            </div>
+            
+            </div>
+        </ul> 
+    </nav>
+    <section class="all-content">
+
+        <div class="heading" onclick="showMainItems('prereq'); ">
+       <h1  > Prerequisite Knowledge</h1>
+     </div>
+    <div class="prereq">
+
+    <div class="menu-1">
+    <h2 onclick="showList('bin')">Binary and Logic Gates</h2></div>
+    <div class="prereq bin">
+        <ul>
+    <li>
+        <a href="binaryandlogic/binaryToDecimal.html">Converting from Binary to Decimal</a>
+    </li>
+        <li>
+            <a href="binaryandlogic/logicGates.html">Basic Logic Gates</a>
+        </li>
+        <li>
+        <a href="binaryandlogic/simplification.html"> Simplify using Boolean Algebra and Karnaugh maps</a>
+    
+        </li>
+    </ul>
+    </div>
+
+    <div class="prereq"><h2 onclick="showList('flip');">Flip-flops</h2></div>
+    
+    <div class="prereq flip">
+        <ul>
+            <li><a href="flip-flops/general.html">What is a flip-flop?</a></li>
+            <li><a href="flip-flops/sr.html">S-R flip-flops</a></li>
+            <li><a href="flip-flops/jk.html">J-K flip-flops</a></li>
+            <li><a href="flip-flops/t.html">T flip-flops</a></li>
+            <li><a href="flip-flops/d.html">D flip-flops</a></li>
+        </ul>
+    
+    </div>
+    <div class="heading" onclick="showMainItems('counters')">
+
+    <h1> Learn about Counters</h1>
+    </div>
+    <div class="menu-2">
+    <h2 class="counters" onclick="showList('sync')">Synchronous Counters</h2>
+    <div class="counters sync">
+    <ul>
+        <li><a href="synchronous/jk.html">Using J-K, T and D flip-flops</a></li>
+    
+    </ul>
+    </div>
+    <h2 class="counters" onclick="showList('bisync')">Bi-directional Synchronous Counters</h2>
+    <div class="counters bisync">
+    <ul>
+        <li><a href="bidirectional/jk.html">Using J-K flip-flops</a></li>
+        <li><a href="bidirectional/t.html">Using T flip-flops</a></li>
+        <li><a href="bidirectional/d.html">Using D flip-flops</a></li>
+    </ul>
+    </div>
+</div>
+
+    <div class="heading" onclick="showList('bonus')">
+        
+    <h1>BONUS</h1>
+    </div>
+    <ul>
+        <li class="bonus"><a href="bonus/quine.html">Quine-McCluskey Algorithm</a></li>
+    </ul>
+    <div id="bottom">
+        <div class="helper">
+            <img src="imgs/person-1.png" alt="" id="image">
+        </div>
+        <div class="text-box">
+            <button id="close" onclick="disappear();"><i class="fa-solid fa-xmark"></i></button>
+            <div class="helper-text">Hey, I'm Thomas! I'll be your guide on this site<button id="next" onclick="next();"><i class="fa-solid fa-arrow-right"></i></button></div> 
+           
+        </div>
+</section>
+    <footer>
+        <a href="about.html">About</a><br>
+       <div class="footer-text">  &copy 3-2-1 Counters 2023 </div>
+    </footer>
+    <script src="js/learn.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/dialog.js"></script>
+</body>
+</html>

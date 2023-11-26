@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/quine.css">
+    <title>Quine-McCluskey Algorithm</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <div class="navbar">
+            <h1>3-2-1 Counters</h1>
+            <div class="links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../learn.html">Learn</a></li>
+            <li><a href="../test.html">Test</a></li>
+            <li><a href="../about.html">About</a></li>
+            </div>
+            </div>
+        </ul> 
+    </nav>
+
+    <section class="all-content">
+    <h1>Quine-McCluskey Algorithm</h1>
+
+    <h2>Prerequisites</h2>
+    <p>You should be familiar with:</p>
+    <ul>
+        <li>Writing Sum-of-Product expressions</li>
+        <li>Simplification using Boolean Algebra and Karnaugh maps</li>
+    </ul>
+
+    <h2>Objectives</h2>
+    <p>On completion of this section, you should be able to:</p>
+    <ul>
+        <li>Describe the Quine-McCluskey Algorithm</li>
+        <li>Know when to use it instead of other simplification techniques</li>
+        <li>Successfully perform the Quine-McCluskey Algorithm on Boolean expressions</li>
+    </ul>
+    <p>We’ve already discussed two methods of minimizing Boolean expressions: simplification using Boolean algebra and simplification using Karnaugh maps. Recall from those notes that Karnaugh maps are the best choice when 4 or less variables are used in the expression. For situations where we have more than 4 variables, Quine-McCluskey is often the better choice. If you want to code a program that minimizes Boolean expressions, using the Quine-McCluskey algorithm in the program ensures that it can systematically calculate the expressions for 4, 10 and 20 variables.</p>
+
+    <p>We will do an example to show you how this algorithm works</p>
+
+    <p>Example: We have the following truth table with 4 input variables A,B,C,D and output F</p>
+
+    <table>
+        <tr>
+            <td colspan="1" rowspan="1">
+                <p>
+                    <span>A</span>
+                </p>
+            </td>
+            <td colspan="1" rowspan="1">
+                <p>
+                    <span>B</span>
+                </p>
+            </td>
+            <td colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c14">C</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c14">D</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c14">F</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+        </tr>
+        <tr class="c9">
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">1</span>
+                </p>
+            </td>
+            <td class="c2" colspan="1" rowspan="1">
+                <p class="c7">
+                    <span class="c1">0</span>
+                </p>
+            </td>
+        </tr>
+    </table>
+
+    <h2>Step 1: Find the minterms of the sum of products expression</h2>
+    <p>
+    Writing this in sum-of-products form, we obtain:
+    F = ABCD’ + A’BC’D + A’BCD + AB’C’D’ + AB’CD’
+    Now let’s make a table using the terms we have in the above expression:</p>
+
+    <img src="./quine-imgs/truth table.png" alt="">
+    <h2> Step 2: Group by 1’s </h2>
+    <p>The next step is to look at the number of 1’s in each of the minterms in our sum-of-products expression and create groups based on how many 1’s the term has. So, we put
+        ABCD’ in Group 1 since D is the only variable in the term equal to 1. Similarly, we put  in Group 1 because it has a single 1.</p>
+
+    <p>Hence, following similar reasoning for the other terms, we obtain the below table:</p>
+    <img src="./quine-imgs/group 1.png" alt="">
+
+    <h2>Step 3: Match-Making</h2>
+
+    <p>Since the terms are grouped together, we will pair terms from different groups together that differ by one variable, i.e. every bit is the same except for one variable which is 0 in one of the terms in the pair and 1 in the other term of the pair. In creating a pair, one of the terms from a given group is selected and attempted to be paired with a term from another group. Once a term can be matched in a pair with some other term, we put a tick in the Match column. Let us go through the pairing process for this example step-by-step.</p>
+
+    <p>We can start by pairing groups 1 and 2. We see that  A’B’C’D (0001) can be paired with A’BC’D (0101) to produce A’C’D (0-01). However, note that A’B’C’D (0001) cannot be paired with AB’C’D’ (1000) since they differ by more than one variable (two, in fact). Moving onto 1000, we see that it can be paired with 1010 to produce 10-0. To keep track of which terms are paired and which terms aren’t, we place tick marks next to the terms we’ve managed to pair so far.</p>
+
+    <img src="./quine-imgs/group-2.png" alt="">
+    <p>Now we can pair the terms in groups 2 and 3. We see that A’BC’D (0101) can be paired with A’BCD (0111) to produce A’BD (01-1) . However, AB’CD’ (1010) cannot be paired with A’BCD (0111).</p>
+
+    <p>And we can place all of the pairs we created in a new table and again group them according to the number of 1’s the new term contains.</p>
+
+    <img src="./quine-imgs/group-3.png" alt="">
+    
+    <p>Now, what we do is that we keep matching terms together until no more possible matches can be made. In our case, we can stop the matching process here since there are no more matches we can make (you can verify this quickly on your own). So we will leave the Matches column empty. These unmatched terms are referred to as prime implicants and are essential in our next step.</p> 
+
+    <h2>Step 4: Prime Implicant Chart</h2>
+    <p>First, we create a table where our prime implicants are the rows and our minterms are the columns, and place an X in each block at the points where the column element and row element have the same value, as below:</p>
+
+    
+
+    <p>Next, we will circle all the X’s which are alone in a column. In this case, it would be the X’s in columns A’B’C’D, A’BCD and AB’C’D’.</p>
+    <img src="./quine-imgs/prime-1.png" alt="">
+
+    <p>And we will put a square around all the X’s in the same row as a circled X, like so:</p>
+    <img src="./quine-imgs/prime-2.png" alt="">
+
+    <p>Since every column has either a circle or a square in it, we are finished. Our final minimised expression is taken from each row which has a marked X, hence our final answer is:</p>
+
+   <p> <em> F = A’C’D + AB’D’ + A’BD </em></p>
+
+   <p>Note: There are cases where every column will not have a marked X. In these cases we need to Reduce the Prime Implicant table. See <a href="http://www.cs.columbia.edu/~cs6861/handouts/quine-mccluskey-handout.pdf">this handout from Columbia University </a></p>
+
+   <h2>References</h2>
+   <ul>
+    <li>Stallings, William. Computer Organization and Architecture</li>
+    <li>All about Circuits - https://www.allaboutcircuits.com/technical-articles/everything-about-the-quine-mccluskey-method/</li>
+    <li>Geeks for Geeks- https://www.geeksforgeeks.org/quine-mccluskey-method/</li>
+    <li>Columbia University Handout - http://www.cs.columbia.edu/~cs6861/handouts/quine-mccluskey-handout.pdf</li>
+   </ul>
+</section>
+<footer>
+    <a href="../about.html">About</a><br>
+   <div class="footer-text">  &copy 3-2-1 Counters 2023 </div>
+</footer>
+</body>
+</html>

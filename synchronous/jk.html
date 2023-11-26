@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    
+    <script src="https://kit.fontawesome.com/c0f66a6381.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /*general*/
+        img
+        {
+            width: 50%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;            
+        }
+      
+        *
+        {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            
+        }
+
+        .all-content h1{
+            text-align: center ;
+            color: #EDF1D6;
+            font-family: 'Poppins', sans-serif;
+            font-size: 50px;
+        }
+
+        h2,h3
+        {
+            font-family: 'Poppins', sans-serif;
+            margin-top: 50px;
+
+        }
+        p, .objectives-section li
+        {
+            font-family: 'Inter', sans-serif;
+            margin: 20px;
+
+        }
+
+        /*Diagrams*/
+        .jk{
+            height: 400px;
+            width:50%;
+        }
+        .jk-diagram
+        {
+            height: 100vh;
+            background-color: #3E54AC;
+            border-bottom-left-radius: 10%;
+        }
+        
+        /*Objectives*/
+        hr
+        {
+            height: 5px;
+            background-color: #655DBB;
+            width: 20%;
+            margin: auto;
+        }
+        ul
+        {
+            list-style: none;
+        }
+        .objectives-section
+        {
+            height: 50vh;
+            text-align: center;
+            /*border: 2px solid red;*/
+            margin-top: 70px;
+        }
+
+
+        .objectives-section li::before {
+        content: "⚡ ";
+        }
+        .synchronous-section
+        {
+            border: 3px solid #BFACE2 ;
+            margin: 70px 70px 150px 70px;
+            background-color: #655DBB;
+            border-radius: 20% 0% 20% 0%;
+        }
+        
+        /*4-step process*/
+        .process-intro
+        {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        .label
+        {
+            text-align: center;
+            font-style: italic;
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+
+        /*karnaugh maps*/
+        .jk-karnaugh
+        {
+            display: flex;
+        }
+    </style>
+
+    <title>Using J-K Flip-flops to Build Synchronous Counters</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <div class="navbar">
+            <h1>3-2-1 Counters</h1>
+            <div class="links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../learn.html">Learn</a></li>
+            <li><a href="../test.html">Test</a></li>
+            <li><a href="../about.html">About</a></li>
+            </div>
+            </div>
+        </ul> 
+    </nav>
+    <section class="all-content">
+    
+    <div class="jk-diagram">
+        <h1>Using J-K Flip-flops to build Synchronous Counters</h1>
+        <img src="./jk-imgs/jk-flip-flop.png" alt="" class="jk">
+    </div>
+
+    <div class="objectives-section">
+        <hr>
+        <h2>Objectives</h2>
+        <p> On completion of this section, you should be able to:</p>
+        <ul>
+            <li>Understand the function of a synchronous counter</li>
+            <li>Use J-K Flip-flops to design a synchronous counter</li>
+        </ul>
+        <hr>
+    </div>
+   
+    <div class="synchronous-section">
+        <h3>What's a Synchronous Counter?</h3>
+        <p>Simply put, a synchronous counter uses a clock pulse to trigger each flip-flop used in the counter at the same time. We'll use the 4-step process to help us in designing our counter.</p>
+    </div>
+    
+
+    <div class="process-intro">
+        <h1>The 4-Step Process</h1>
+        <p>We will look at the following example:</p>
+        <h3>Design a synchronous counter with the following repeated binary sequence:0,1,2,3. Use J-K flip-flops</h3>
+    </div>
+
+    
+    <h3>Step 1: Develop the State Diagram</h3>
+    <p>A state diagram, although not necessary, is a useful tool to help visual what is going on.</p>
+    <img class="jk-state-diagram" src="jk-imgs\jk-state-diagram.png" alt="">
+    <p class="label"> Fig. 1: State Diagram of the binary sequence 0,1,2,3</p>
+
+    <p>We can see that when the counter is displaying 0, we know the next number it will display is 1, and when it displays 1, the next number is 2. Also remember that the counter would not output decimal numbers but binary, so that’s what we’re seeing on the right-hand side of the table.
+    </p>
+
+    <p>
+        You may also recall that it was stated before flip-flops can only ever output a 1 or a 0, so how is it that they can output 01 and 10? This output is actually the combination of the flip-flops in the circuit, so for example if flip-flops Q3, Q2, and Q1, output binary numbers 1, 0, and 1 respectively, that output would combine and form 101, otherwise known as 5 in decimal.
+    </p>
+        
+
+    <h3>Step 2: Develop the Present-State Next-State Transition Table</h3>
+    <p>In this step, we utilize the excitation table to complete our Present-State Next-State Transition Table.
+        Recall the excitation table for J-K flip-flops.
+    </p>
+    <img src="jk-imgs\jk-excitation.png" alt="" class="jk-excitation">
+    <p class="label"> Fig. 2: Excitation Table for J-K Flip-flop</p>
+    <p>For clarity, let's create a table that shows the present and next states.<br>
+        Looking at our state diagram, we see we move from 0 to 1, 1 to 2, 2 to 3 and then from 3 to 0.
+        <img src="jk-imgs\sequence-states.png" alt="">
+        This shows our present state and next state (first, our present state is 0 and our next state is 1. Then our new present state is 1 and our next state is 2, etc). With this information, we can create our table:
+    </p>
+
+    <img src="jk-imgs\present-next-state(1).png" alt="">
+    <p>Using the right side of the table above and the excitation table, we develop the Present-State Next-State Transition Table</p>
+    <img src="jk-imgs\present-next-trans-table.png" alt="" class="jk-present-next-table">
+    <p class="label"> Fig. 3: Present-State Next-State Transition Table</p>
+    <p>To get the J and K outputs, look at the present and the next state and compare it to the excitation table.
+        For example, let's look at the first row. We have 0 for the Q(A) input and 0 for the Q<sup>+</sup>(A). Using the excitation table, 0 and 0 gives 0 for the J input and X for K. So J(A) is 0 and K(A) is X. 
+        <img src="jk-imgs\present-next-state-row.png" alt="">
+    </p>
+    <p>We do the same for Q(B) and Q<sup>+</sup>(B) and continue this process for all of the present and next states.</p>
+
+    <h3>Step 3: Simplify the expressions for each of the inputs</h3>
+    <p>We can use Boolean Algebra, Karnaugh Maps or even Quine-McCluskey for simplification. For this example, Karnaugh Maps are used to show the resulting boolean expressions.
+    </p>
+    
+    <div class="jk-karnaugh">
+        <img src="jk-imgs\jk-karnaugh(1).png" alt="">
+        <img src="jk-imgs\jk-karnaugh(2).png" alt="">
+    </div>
+
+   <p> If you’re still not quite sure how to create a Karnaugh map you can check out
+    <a href="../binaryandlogic/simplification.html">our notes on Karnaugh maps</a></p>
+
+    <h3>Step 4: Implement the circuit</h3>
+    <p>After all of our hardwork, we get to put the circuit together!</p>
+    <img src="./jk-imgs/final.png" alt="">
+
+    <a href="../Circuits/JK_Synchronous_Circuit_0123 (1).circ">Download the Logisim circuit here</a>
+    <h2>General guidelines for building counters</h2>
+    <p>We've just built out a synchronous counter for the repeated sequence 0,1,2,3 using J-K flip-flops, but what if we wanted to build out a counter using T flip-flops, or D flip-flops? Luckily, the process of building out a synchronous counter follows the same 4-step process we've outlined above. Just as a reminder, the steps are:</p>
+    <ul>
+        <li>Step 1: Develop the State Diagram</li>
+        <li>Step 2: Develop the Present-State Next-State Transition Table</li>
+        <li>Step 3: Simplify the expressions for each of the inputs</li>
+        <li>Step 4: Implement the circuit</li>
+    </ul>
+
+    <p>So, here's a new question:</p>
+    <p>Develop a synchronous counter for the repeated sequence 0,3,2,1 using:</p>
+    <ul>
+        <li>T flip-flops</li>
+        <li>D flip-flops</li>
+    </ul>
+
+    <p>We suggest you try to do these questions on your own (you can look back at these notes for reference, of course). Just remember that the Present-State Next-State tables for the different types of flip-flop will vary, but the simplification process using Karnaugh maps and the implementation of the circuit will be essentially the same.</p>
+
+    <p>To get you started, here's the Present-State Next-State Transition table for the T flip-flop and D flip-flop for the sequence 0,3,2,1:</p>
+
+    <img src="./jk-imgs/extra d.png" alt="">
+    <p class="label"> Fig. 4: Present-State Next-State Transition Table for D flip-flop sequence 0,3,2,1</p>    
+
+    <img src="./jk-imgs/extra t.png" alt="">
+    <p class="label"> Fig. 5: Present-State Next-State Transition Table for T flip-flop sequence 0,3,2,1</p>    
+
+    <p>
+    
+        Note: A<sub>t</sub> is Q(A), A <sub>t+1</sub> is Q <sup>+</sup>(A)
+    
+    </p>
+
+    <p> <em> Confused on how we got here? Take a look back at our <a href="../flip-flops/d.html">D flip-flop notes</a> and <a href="../flip-flops/t.html">T flip-flop notes</a> </em> </p>
+    <p>When you're done completing all the steps and have built your circuit, feel free to  <a href="../Circuits/Extra exercises.circ" download> click here and download our circuits </a> to check your answer against ours. If you want even more practice, head to the <a href="../test.html"> Test Section </a> to play our game!</p>
+
+</section>
+    <footer>
+        <a href="../about.html">About</a><br>
+       <div class="footer-text">  &copy 3-2-1 Counters 2023 </div>
+    </footer>
+</body>
+</html>

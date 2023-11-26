@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <title>Using D flip-flops for bidirectional counters</title>
+
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <style>
+        /*general*/
+        img
+        {
+            width: 50%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;            
+        }
+        .all-content h1{
+            text-align: center ;
+            color: #EDF1D6;
+            font-family: 'Poppins', sans-serif;
+            font-size: 50px;
+        }
+        *
+        {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box; 
+        }
+        h2,h3
+        {
+            font-family: 'Poppins', sans-serif;
+            margin-top: 50px;
+
+        }
+        p, .all-content li
+        {
+            font-family: 'Inter', sans-serif;
+            margin: 20px;
+
+        }
+
+        /*Diagrams*/
+        .d-diagram{
+            height: 400px;
+            width:50%;
+        }
+        .d-hero
+        {
+            height: 100vh;
+            background-color: #408E91;
+            border-bottom-left-radius: 10%;
+        }
+        .d-hero img {
+            margin-top: 20px;
+            /* border: 2px solid red; */
+        }
+        
+        /*Objectives*/
+        hr
+        {
+            height: 5px;
+            background-color: #408E91;
+            width: 20%;
+            margin: auto;
+        }
+        ul
+        {
+            list-style: none;
+        }
+        .objectives-section
+        {
+            height: 50vh;
+            text-align: center;
+            /*border: 2px solid red;*/
+            margin-top: 70px;
+        }
+        .all-content li::before {
+        content: "🌸 ";
+        }
+
+        .synchronous-section
+        {
+            border: 3px solid #245953;
+            margin: 70px 70px 150px 70px;
+            background-color: #E49393;
+            border-radius: 20% 0% 20% 0%;
+        }
+        
+        /*4-step process*/
+        .process-intro
+        {
+            text-align: center;
+            margin-bottom: 70px;
+            padding: 20px;
+        }
+        .process-intro h1
+        {
+            color: #E49393;
+        }
+        .label
+        {
+            text-align: center;
+            font-style: italic;
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+ 
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <div class="navbar">
+            <h1>3-2-1 Counters</h1>
+            <div class="links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../learn.html">Learn</a></li>
+            <li><a href="../test.html">Test</a></li>
+            <li><a href="../about.html">About</a></li>
+            </div>
+            </div>
+        </ul> 
+    </nav>
+
+    <section class="all-content">
+    <div class="d-hero">
+        <h1>Using D Flip-flops to Build Bidirectional Synchronous Counters</h1>
+        <img src="d-bidirectional-imgs\d-flip-flop.png" alt="" class="">
+    </div>
+
+    <div class="objectives-section">
+        <hr>
+        <h2>Objectives</h2>
+        <p> On completion of this section, you should be able to:</p>
+        <ul>
+            <li>Understand the function of a bidirectional synchronous counter</li>
+            <li>Use D Flip-flops to design a bidirectional synchronous counter</li>
+        </ul>
+    </div>
+    <hr>
+   
+    <div class="synchronous-section">
+        <h3>What's a Bidirectional Synchronous Counter?</h3>
+        <p>Simply put, a synchronous counter uses a clock pulse to trigger each flip-flop used in the counter at the same time. A bidirectional counter is a synchronous up/down binary counter that has the ability to count in both directions either to or from some preset value as well as zero. We'll use the 4-step process to help us in desgining our counter.</p>
+
+        <p>If you're unfamiliar with D flip-flops, take a look here then come back to this page: 
+            <a href="../flip-flops/d.html">What are D flip flops?</a></p>
+    </div>
+    
+
+    <div class="process-intro">
+        <h1>The 4-Step Process</h1>
+        <p>Although bidirectional synchronous counters take a bit more work, we can use the 4-step process from the section that dealt with designing synchronous counters. Let's look at the following example:</p>
+        <h3>Design a 3-bit bidirectional synchronous counter with the following repeated binary sequence:0,1,2,3,4,5,6,7 using D flip-flops</h3>
+    </div>
+
+    
+    <h3>Step 1: Develop the State Diagram</h3>
+    <p>From previous sections, you should be familiar with how this is done. You might come up with something like this: </p>
+    <img class="d-state-diagram" src="d-bidirectional-imgs\d-state-diagram(2).png" alt="">
+    <p class="label"> Fig. 1: Supposed State Diagram of the binary sequence 0,1,2,3,4,5,6,7</p>
+    <p>Here, we used the binary representation of each number of the sequence. The '3 bits' in the example tells 
+        us how many bits we need. As shown in the diagram above, we used 3 bits to represent each number.<br><br>
+        However, we need more information when working with bidirectional counters. As the word 'bidirectional' suggests, we're moving in <em>two directions</em>. We consider the directions for the 'up' count (M=0)
+        and the 'down' count (M=1).
+    </p>
+    <img  src="d-bidirectional-imgs\d-state-diagram(1).png" alt="">
+    <p class="label"> Fig. 2: Actual State Diagram of the binary sequence 0,1,2,3,4,5,6,7</p>
+    <p>As you can see, the 'up' count goes in a clockwise direction (0,1,2,3,...) while the 'down' count
+        moves counter-clockwise (0,7,6,...). This is the actual state diagram of this sequence.
+    </p>
+
+    <h3>Step 2: Develop the Present-State Next-State Transition Table</h3>
+    <p>In this step, we utilize the excitation table to complete our Present-State Next-State Transition Table.
+        Recall the excitation table for D flip-flops.
+    </p>
+    <img src="d-bidirectional-imgs\d-excitation.png" alt="">
+    <p class="label"> Fig. 3: Excitation Table for D Flip-flop</p>
+    <p>For clarity, show the present and next states. This isn't necessary but is helpful when buliding our Present-State Next-State Transition Table. <br>
+        Looking at our state diagram, we see we move from 0 to 1, 1 to 2, & 2 to 3 and so on for M = 0. For
+        M = 1, we move from 0 to 7, 7 to 6, etc.
+    </p>
+
+    <img src="d-bidirectional-imgs\d-present-next-trans-table.png" alt="" class="d-present-next-table">
+    <p class="label"> Fig. 4: Present-State Next-State Transition Table</p>
+
+    <h3>Step 3: Simplify the expressions for each of the inputs</h3>
+    <p>We'll use karnaugh maps to get the expressions needed. Try to find an expression for D<sub>A</sub>
+    </p>
+    <img src="d-bidirectional-imgs\d-karnaugh.png" alt="d-karnaugh">
+
+    
+    <h3>Step 4: Implement the circuit</h3>
+    <p>After all of our hardwork, you get to put the circuit together! Check
+        <a href="https://www.youtube.com/watch?v=sWRDcEohpZg">this video</a> for hints. Or check out the <a href="./t.html">bidirectional counters using T flip-flops</a> for an example of a bidirectional counter.</p>
+    </p>
+</section>
+
+<footer>
+    <a href="../about.html">About</a><br>
+   <div class="footer-text">  &copy 3-2-1 Counters 2023 </div>
+</footer>
+</body>
+</html>
